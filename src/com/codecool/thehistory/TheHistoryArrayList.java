@@ -31,7 +31,7 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public void clear() {
         //TODO: check the TheHistory interface for more information
-        this.wordsArrayList = new ArrayList<>();
+        this.wordsArrayList.clear();
     }
 
     @Override
@@ -49,6 +49,8 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
+
+
     }
 
     @Override

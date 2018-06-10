@@ -1,9 +1,6 @@
 package com.codecool.thehistory;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class TheHistoryLinkedList implements TheHistory {
     /**
@@ -14,32 +11,70 @@ public class TheHistoryLinkedList implements TheHistory {
     @Override
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
+        this.wordsLinkedList.addAll(Arrays.asList(text.split("\\s+")));
     }
 
     @Override
     public void removeWord(String wordToBeRemoved) {
         //TODO: check the TheHistory interface for more information
+        this.wordsLinkedList.removeAll(Collections.singletonList(wordToBeRemoved));
     }
 
     @Override
     public int size() {
         //TODO: check the TheHistory interface for more information
-        return 0;
+        return this.wordsLinkedList.size();
     }
 
     @Override
     public void clear() {
         //TODO: check the TheHistory interface for more information
+        this.wordsLinkedList.clear();
     }
 
     @Override
     public void replaceOneWord(String from, String to) {
         //TODO: check the TheHistory interface for more information
+       while (this.wordsLinkedList.contains(from)) {
+           this.wordsLinkedList.set(this.wordsLinkedList.indexOf(from), to);
+       }
+
     }
 
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
+
+        ListIterator<String> listIter = wordsLinkedList.listIterator();
+        while (listIter.hasNext()) {
+            int matchingWordCount = 0;
+            try {
+                for (String fromWord : fromWords) {
+                    String nextWord = listIter.next();
+                    if (nextWord.equals(fromWord)) {
+                        matchingWordCount++;
+                    } else {
+                        break;
+                    }
+                }
+            } catch(Exception e) {
+                break;
+            }
+            if (matchingWordCount == fromWords.length) {
+                for (String ignored : fromWords) {
+                    listIter.previous();
+                    listIter.next();
+                    listIter.remove();
+                }
+                for (String toWord : toWords) {
+                    listIter.add(toWord);
+                }
+            } else {
+                for (int j=0; j < matchingWordCount; j++) {
+                    listIter.previous();
+                }
+            }
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.codecool.thehistory;
 import java.util.Arrays;
 
 import static jdk.nashorn.internal.objects.NativeString.indexOf;
+import static jdk.nashorn.internal.objects.NativeString.trim;
 
 public class TheHistoryArray implements TheHistory {
 
@@ -45,7 +46,8 @@ public class TheHistoryArray implements TheHistory {
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
 
-      /*   while (true) {
+        while (true) {
+
             boolean foundExpression = false;
             int startingIndex = -1;
             for (int i = 0; i < (this.size() - fromWords.length - 1); i++) {
@@ -68,13 +70,17 @@ public class TheHistoryArray implements TheHistory {
                 String[] newArray = new String[this.size() - fromWords.length + toWords.length];
                 System.arraycopy(this.wordsArray, 0, newArray, 0, startingIndex);
                 System.arraycopy(toWords, 0, newArray, startingIndex, toWords.length);
-                System.arraycopy(this.wordsArray, startingIndex + fromWords.length, newArray, startingIndex + toWords.length, toWords.length);
+                System.arraycopy(this.wordsArray, startingIndex + fromWords.length, newArray,
+                        startingIndex + toWords.length, this.size() - startingIndex - fromWords.length);
                 this.wordsArray = newArray;
+
             } else {
                 break;
             }
+
+
         }
-        */
+
     }
 
     @Override
